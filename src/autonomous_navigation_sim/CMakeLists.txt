@@ -9,6 +9,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 add_executable(fake_scan_node src/fake_scan_node.cpp)
 ament_target_dependencies(fake_scan_node
@@ -23,6 +24,13 @@ ament_target_dependencies(perception_node
   std_msgs
 )
 
+add_executable(decision_node src/decision_node.cpp)
+ament_target_dependencies(decision_node
+  rclcpp
+  std_msgs
+  geometry_msgs
+)
+
 add_executable(safety_monitor_node src/safety_monitor_node.cpp)
 ament_target_dependencies(safety_monitor_node
   rclcpp
@@ -32,12 +40,19 @@ ament_target_dependencies(safety_monitor_node
 install(TARGETS
   fake_scan_node
   perception_node
+  decision_node
   safety_monitor_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
 install(DIRECTORY
   launch
+  DESTINATION share/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  rviz
   DESTINATION share/${PROJECT_NAME}
 )
 
