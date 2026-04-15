@@ -1,0 +1,4 @@
+{
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/autonomous_navigation_sim/compile_commands.json",
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+}
